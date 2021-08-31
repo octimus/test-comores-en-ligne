@@ -18,15 +18,43 @@
             body {
                 font-family: 'Nunito', sans-serif;
             }
-            img {
-                width: 200px;
-                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% ;
-            }
             .flex-custom{
                 display: flex;
                 color: white;
-                flex-direction: column;
             }
+            .flex-custom .elt{
+                width: 200px;
+                height: 200px;
+                background: gray;
+            }
+            aside{
+                width: 250px;
+                height: 100vh;
+                background: linear-gradient(271deg, #1a202c6e, #d861769e);
+            }
+            body{
+                display: flex;
+            }
+            .elt{
+                border-radius: 12px;
+            }
+            .elt img{
+                width: 100%;
+                height: 100%;
+                border-radius: 12px;
+            }
+            p{
+                color: white;
+            }
+            .item{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                max-height: 300px;
+                margin: 12px;
+
+            }
+
             a{
                 display:inline-block;
                 margin-top: 12px;
@@ -34,19 +62,43 @@
                 border-radius: 12px;
                 padding: 5px 15px;
             }
+            .ellipsis{
+                min-height: 235px;
+            }
         </style>
     </head>
-    <body class="antialiased">
-        <div class="flex-custom relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            <img src="assets/pic.jpg" alt="fdsfsdfsdfds">
-            <p>
-                <h1>Maoulida Saïd M'namdji</h1>
-                Développeur Web et Mobile
+    <body class="antialiased  bg-gray-100 dark:bg-gray-900">
+        <?php 
+            $apps = [
+                [
+                    'titre'=>'Natidja', 'url'=>'https://play.google.com/store/apps/details?id=actick.octra.natidja', 
+                    'description'=>'Natidja est une application mobile qui permet de consulter à distance les résultats des examens nationaux ( BAC et BEPC ) aux Comores'], 
+                    ['titre'=>'Mon École', 'url'=>'https://play.google.com/store/apps/details?id=app.natidja.gestion', 'description'=>"Cet application permet aux enseignants de saisir les notes et les données de la vie scolaire de leurs élèves et de les envoyer à l'établissement ainsi qu'à leurs parents."], 
+                ['titre'=>'Octra Comores', 'url'=>'https://play.google.com/store/apps/details?id=mastereh.yembe.octra', 'description'=>"Octra est l'application de petites annonces comorienne la plus utilisée depuis 2017 jusqu'à ce jour."], ['titre'=>'Tayari KM', 'url'=>'', 'description'=>"TAYARI est une application de réservation de véhicules en ligne aux Comores."], 
+                ['titre'=>'Kara Live', 'url'=>'https://apps.apple.com/fr/app/kara-live/id1575685457', 'description'=>'Kara-Live Session est un Festival International qui se déroule aux Comoros']
+            ];
+        ?>
+        <aside>
 
-                <div>
-                    <a href="{{ route('works') }}">Portfolio</a>
+        </aside>
+        <section style="width: 100%;padding: 50px;">
+            
+            <div class="flex-custom relative flex items-top min-h-screen py-4 sm:pt-0">
+                @for ($i = 0; $i < 5; $i++)
+                <div class="item">
+                    <div class="elt">
+                        <img src="assets/{{$i+1}}.webp" alt="" srcset="">
+                    </div>
+                    <div class="ellipsis">
+                        <h3>{{$apps[$i]['titre']}}</h3>
+                        {{$apps[$i]['description']}}
+                    </div>
+                    <div>
+                        <a href="{{$apps[$i]['url']}}">Visiter</a>
+                    </div>
                 </div>
-            </p>
-        </div>
+                @endfor
+            </div>
+        </section>
     </body>
 </html>
